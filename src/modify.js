@@ -14,13 +14,21 @@ const getRandomBytes = () => new Promise((resolve, reject) => {
 const return4RandomColors = () => {
   const colors = [];
   return getRandomBytes()
-    .then(() => {
+    .then((bytes) => {
+      colors.push(numsToRGBColor(bytes));
+      return getRandomBytes();
     })
-    .then(() => {
+    .then((bytes) => {
+      colors.push(numsToRGBColor(bytes));
+      return getRandomBytes();
     })
-    .then(() => {
+    .then((bytes) => {
+      colors.push(numsToRGBColor(bytes));
+      return getRandomBytes();
     })
-    .then(() => {
+    .then((bytes) => {
+      colors.push(numsToRGBColor(bytes));
+      return colors;
     })
     .catch((err) => {
       console.error(err);
@@ -28,6 +36,7 @@ const return4RandomColors = () => {
 };
 
 return4RandomColors().then(console.log);
+// logs the array with 4 colors [ 'rgb(105, 178, 206)', ... ]
 
 module.exports = {
   numsToRGBColor,
